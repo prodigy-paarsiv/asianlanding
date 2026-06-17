@@ -475,15 +475,18 @@
 
         .social-card {
             position: relative;
-            min-width: 210px;
+            flex: 0 0 210px;
+            width: 210px;
+            max-width: 210px;
             height: 400px;
             border-radius: 22px;
             overflow: hidden;
-            flex-shrink: 0;
             cursor: pointer;
         }
 
         .social-card .thumb {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -515,6 +518,7 @@
             bottom: 0;
             left: 0;
             right: 0;
+            z-index: 1;
             padding: 40px 14px 16px;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.88));
             color: #fff;
@@ -663,92 +667,152 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: linear-gradient(135deg, #0F1F3D 0%, #1C3A6E 100%);
-            border-radius: 14px;
-            padding: 20px 16px;
+            gap: 12px;
+            background: linear-gradient(135deg, #1a3a6e 0%, #0d1b35 100%);
+            border-radius: 16px;
+            padding: 18px 16px 18px 20px;
             overflow: hidden;
-            min-height: 120px;
+            min-height: 122px;
+        }
+
+        .confidence-banner-text {
+            flex: 1;
+            min-width: 0;
         }
 
         .confidence-banner-text h2 {
-            font-size: 42px;
+            font-size: 44px;
             font-weight: 800;
             color: #fff;
             line-height: 1;
+            margin-bottom: 6px;
         }
 
-        .confidence-banner-text p {
+        .confidence-banner-label {
             font-size: 11px;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 0.5px;
-            margin-top: 4px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            line-height: 1.35;
+            margin: 0;
         }
 
         .confidence-banner-img {
-            width: 130px;
-            height: auto;
+            width: 177px;
+            height: 122px;
             object-fit: contain;
             flex-shrink: 0;
+        }
+
+        @media (max-width: 340px) {
+            .confidence-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .confidence-banner-img {
+                width: 160px;
+                height: auto;
+            }
         }
 
         /* FOOTER */
         .footer {
             background: #000;
             color: #fff;
-            padding: 20px 15px;
+            padding: 0;
         }
 
         .footer-container {
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
 
         .footer-logo {
             text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #222;
+            padding: 24px 16px;
+            border-bottom: 1px solid #333;
         }
 
         .footer-logo img {
-            width: 160px;
-            margin-bottom: 15px;
+            width: 140px;
+            margin-bottom: 16px;
         }
 
         .footer-logo p {
-            font-size: 13px;
-            color: #ccc;
+            font-size: 12px;
+            color: #fff;
             line-height: 1.6;
+            max-width: 320px;
+            margin: 0 auto;
         }
 
         .footer-box {
-            padding: 18px 0;
-            border-bottom: 1px solid #222;
+            padding: 20px 16px;
+            border-bottom: 1px solid #333;
+            text-align: left;
+        }
+
+        .footer-box--last {
+            border-bottom: none;
         }
 
         .footer-box h3 {
-            font-size: 15px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+        }
+
+        .footer-box h3 i {
+            font-size: 14px;
         }
 
         .item {
             display: flex;
-            gap: 10px;
-            font-size: 13px;
-            margin-bottom: 12px;
-            color: #ddd;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 12px;
+            margin-bottom: 14px;
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .support-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border: 1.5px solid #fff;
+            border-radius: 50%;
+            font-size: 9px;
+            font-weight: 700;
+            flex-shrink: 0;
         }
 
         .social {
             display: flex;
-            gap: 18px;
+            gap: 20px;
         }
 
         .social a {
             color: #fff;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .footer-box ul {
@@ -756,19 +820,36 @@
         }
 
         .footer-box ul li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .footer-box ul li:last-child {
+            margin-bottom: 0;
         }
 
         .footer-box ul li a {
-            color: #ddd;
+            color: #fff;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         .footer-box p {
-            font-size: 13px;
-            color: #ccc;
+            font-size: 12px;
+            color: #fff;
             line-height: 1.6;
+        }
+
+        @media (min-width: 768px) {
+            .footer-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-logo {
+                grid-column: 1 / -1;
+            }
         }
     </style>
 </head>
@@ -943,9 +1024,10 @@
         <div class="confidence-banner">
             <div class="confidence-banner-text">
                 <h2>10 CR+</h2>
-                <p>HAPPY CUSTOMERS & COUNTING</p>
+                <p class="confidence-banner-label">HAPPY CUSTOMERS</p>
+                <p class="confidence-banner-label">&amp; COUNTING</p>
             </div>
-            <img src="./assests/customers-illustration.png" alt="Happy customers" class="confidence-banner-img">
+            <img src="./assests/ce67a9397b41dff84323812239ff1a6ca9efe83e.png" alt="Happy customers" class="confidence-banner-img">
         </div>
     </section>
 
@@ -954,33 +1036,33 @@
         <div class="footer-container">
 
             <div class="footer-logo">
-                <img src="https://cdn.asianlive.in/digital-website/asian-wave-white_12156424250444176950.png?tr=w-200,h-100" alt="logo">
-                <p>Asian is one of the fastest growing and the most loved footwear brands in India.</p>
+                <img src="https://cdn.asianlive.in/digital-website/asian-wave-white_12156424250444176950.png?tr=w-200,h-100" alt="Asian logo">
+                <p>Asian is one of the fastest growing and the most loved footwear brands in India. Check out our incredible range and become an Asian Rider today.</p>
             </div>
 
             <div class="footer-box">
-                <h3><i class="fa-regular fa-address-card"></i> GET IN TOUCH</h3>
+                <h3>GET IN TOUCH</h3>
                 <div class="item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>info@asianfootwears.com</span>
+                    <span class="support-icon">24</span>
+                    <span>Support: <a href="mailto:info@asianfootwears.com">info@asianfootwears.com</a></span>
                 </div>
                 <div class="item">
-                    <i class="fa-solid fa-truck"></i>
-                    <span>+91 999-602-7231</span>
+                    <i class="fa-solid fa-store"></i>
+                    <span>Corporate/Bulk orders: <a href="tel:+919996027231">+91 999-602-7231</a></span>
                 </div>
                 <div class="item">
                     <i class="fa-solid fa-phone"></i>
-                    <span>+91 756-100-0092</span>
+                    <span>For order/refunds related issues: <a href="tel:+917561000092">+91 756-100-0092</a></span>
                 </div>
             </div>
 
             <div class="footer-box">
-                <h3><i class="fa-solid fa-share-nodes"></i> SOCIAL</h3>
+                <h3><i class="fa-solid fa-bookmark"></i> SOCIAL</h3>
                 <div class="social">
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
                 </div>
             </div>
 
@@ -990,12 +1072,18 @@
                     <li><a href="#">HOME</a></li>
                     <li><a href="#">STORE LOCATOR</a></li>
                     <li><a href="#">MY ACCOUNT</a></li>
-                    <li><a href="#">TRACK ORDER</a></li>
-                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="#">CORPORATE/BULK ORDERS</a></li>
+                    <li><a href="#">TRACK MY ORDER</a></li>
+                    <li><a href="#">BLOGS</a></li>
+                    <li><a href="#">CONTACT US</a></li>
+                    <li><a href="#">PRIVACY POLICY</a></li>
+                    <li><a href="#">REFUND POLICY</a></li>
+                    <li><a href="#">SHIPPING POLICY</a></li>
+                    <li><a href="#">TERMS OF SERVICE</a></li>
                 </ul>
             </div>
 
-            <div class="footer-box">
+            <div class="footer-box footer-box--last">
                 <h3><i class="fa-solid fa-location-dot"></i> ADDRESS</h3>
                 <p>J-20, Udhyog Nagar, Peeragarhi, Delhi, New Delhi 110041</p>
             </div>
@@ -1179,7 +1267,7 @@
         /* ── Social media video data ──────────────────────── */
         const socialVideos = [
             {
-                thumb: './assests/herobg.jpg',
+                thumb: './assests/886a544a55adbcd379b5abf220d19688c3504b82.png',
                 name: 'POWER PLAY 01',
                 subtitle: 'Premium Running Shoes.',
                 price: '₹1199',
@@ -1189,7 +1277,7 @@
                 reviews: 32
             },
             {
-                thumb: './assests/herobg.jpg',
+                thumb: './assests/886a544a55adbcd379b5abf220d19688c3504b82.png',
                 name: 'POWER PLAY 02',
                 subtitle: 'Premium Running Shoes.',
                 price: '₹1299',
@@ -1199,7 +1287,7 @@
                 reviews: 40
             },
             {
-                thumb: './assests/herobg.jpg',
+                thumb: './assests/886a544a55adbcd379b5abf220d19688c3504b82.png',
                 name: 'ZORO 01',
                 subtitle: 'Adventure Shoes.',
                 price: '₹1399',
@@ -1209,7 +1297,7 @@
                 reviews: 18
             },
             {
-                thumb: './assests/herobg.jpg',
+                thumb: './assests/886a544a55adbcd379b5abf220d19688c3504b82.png',
                 name: 'GLOBAL PRO',
                 subtitle: 'Lifestyle Sneakers.',
                 price: '₹1599',
@@ -1219,7 +1307,7 @@
                 reviews: 55
             },
             {
-                thumb: './assests/herobg.jpg',
+                thumb: './assests/886a544a55adbcd379b5abf220d19688c3504b82.png',
                 name: 'TRAIL KING',
                 subtitle: 'Outdoor Shoes.',
                 price: '₹1699',
