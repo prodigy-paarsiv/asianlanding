@@ -144,6 +144,24 @@
             cursor: pointer;
         }
 
+        .offer-carousel {
+            overflow: hidden;
+            width: 100%;
+            padding-top: 14px;
+            margin-top: -4px;
+        }
+
+        .offer-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .offer-slide {
+            position: relative;
+            flex: 0 0 100%;
+            width: 100%;
+        }
+
         .offer-main {
             display: grid;
             grid-template-columns: 60% 40%;
@@ -187,10 +205,35 @@
             position: relative;
             padding: 20px;
         }
+
         .offbadge {
             position: absolute;
             top: -10px;
             right: 6px;
+            z-index: 2;
+        }
+
+        .offer-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            /* margin-top: 12px; */
+        }
+
+        .offer-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ccc;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .offer-dot.active {
+            width: 22px;
+            border-radius: 4px;
+            background: #888;
         }
 
         /* ==========================
@@ -932,18 +975,10 @@
     </div>
 
     <div class="offer-section">
-        <div class="offer-main">
-            <div class="offer-left">
-                <h6>FEATURED PRODUCT</h6>
-                <h1>ZORO 01</h1>
-                <p>Premium Adventure Shoes</p>
-                <button class="shopnowbtn">SHOP NOW <i class="fa-solid fa-angle-right"></i></button>
-            </div>
-            <div class="offer-right">
-                <img src="./assests/off_shoes.png" alt="">
-            </div>
+        <div class="offer-carousel">
+            <div class="offer-track" id="offerTrack"></div>
         </div>
-        <img src="./assests/Frame 4765.png" class="offbadge" alt="">
+        <div class="offer-dots" id="offerDots"></div>
     </div>
 
     <!-- EDITOR'S PICK — horizontal scroll product slider -->
@@ -1414,6 +1449,97 @@
 
         initSlider(document.querySelector('.editor-section .product-slider-wrap'), 260);
         initSlider(document.querySelector('.social-section .product-slider-wrap'), 226);
+
+        /* ── Featured product carousel ────────────────────── */
+        const offerSlides = [
+            { name: 'ZORO 01', desc: 'Premium Adventure Shoes', image: './assests/off_shoes.png' },
+            { name: 'ZORO 02', desc: 'Premium Adventure Shoes', image: './assests/off_shoes.png' },
+            { name: 'POWER PLAY 01', desc: 'Premium Running Shoes', image: './assests/shoe1.png' }
+        ];
+
+        function createOfferSlide(slide) {
+            const el = document.createElement('div');
+            el.className = 'offer-slide';
+            el.innerHTML = `
+                <div class="offer-main">
+                    <div class="offer-left">
+                        <h6>FEATURED PRODUCT</h6>
+                        <h1>${slide.name}</h1>
+                        <p>${slide.desc}</p>
+                        <button class="shopnowbtn">SHOP NOW <i class="fa-solid fa-angle-right"></i></button>
+                    </div>
+                    <div class="offer-right">
+                        <img src="${slide.image}" alt="${slide.name}">
+                    </div>
+                </div>
+                <img src="./assests/Frame 4765.png" class="offbadge" alt="15% OFF">
+            `;
+            return el;
+        }
+
+        (function initOfferCarousel() {
+            const carousel = document.querySelector('.offer-carousel');
+            const track = document.getElementById('offerTrack');
+            const dotsContainer = document.getElementById('offerDots');
+            const total = offerSlides.length;
+
+            offerSlides.forEach(() => {
+                const dot = document.createElement('span');
+                dot.className = 'offer-dot';
+                dotsContainer.appendChild(dot);
+            });
+            const dots = dotsContainer.querySelectorAll('.offer-dot');
+
+            offerSlides.forEach(slide => track.appendChild(createOfferSlide(slide)));
+            track.appendChild(createOfferSlide(offerSlides[0]));
+
+            let current = 0;
+            let autoTimer;
+
+            function goTo(index, animate = true) {
+                track.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+                track.style.transform = `translateX(-${index * carousel.offsetWidth}px)`;
+
+                const dotIndex = index % total;
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === dotIndex));
+            }
+
+            function nextSlide() {
+                current++;
+                goTo(current);
+
+                if (current === total) {
+                    track.addEventListener('transitionend', function handler(e) {
+                        if (e.propertyName !== 'transform') return;
+                        track.removeEventListener('transitionend', handler);
+                        current = 0;
+                        goTo(0, false);
+                    });
+                }
+            }
+
+            function startAuto() {
+                autoTimer = setInterval(nextSlide, 4000);
+            }
+
+            function resetAuto() {
+                clearInterval(autoTimer);
+                startAuto();
+            }
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    current = i;
+                    goTo(current);
+                    resetAuto();
+                });
+            });
+
+            window.addEventListener('resize', () => goTo(current, false));
+
+            goTo(0, false);
+            startAuto();
+        })();
 
     </script>
 
