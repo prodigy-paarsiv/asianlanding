@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            background-color: #000000;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 20px;
+        }
+
+        .logo {
+            width: 65px;
+            height: 34px;
+            border-radius: 50%;
+        }
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            font-size: 15px;
+            font-weight: 200;
+            color: white;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            justify-content: baseline !important;
+            align-items: end;
+            gap: 20px;
+            color: white;
+            height: 95vh;
+            background-image: url('./assests/herobg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero .hero-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .explore-button {
+            background-color: #0071D9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 20px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hero-text span {
+            font-size: 12px;
+            margin-bottom: 5px;
+            font-weight: 400;
+            letter-spacing: 6px;
+        }
+        .hero-text h1 {
+            font-size: 32px;
+            font-weight: 800;
+        }
+        .hero-text p {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .under-hero {
+            padding: 20px;
+        }
+
+        .box-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px 0px;
+        }
+
+        .box-box {
+            border: 1px solid #0000000D;
+            border-radius: 10px;
+            padding: 8px;
+            gap: 15px;
+        }
+
+        .built-different {
+            font-size: 13px;
+            font-weight: 300;
+            color: #a5a5a5;
+            letter-spacing: 2px;
+        }
+
+        .under-description {
+            font-size: 12px;
+            font-weight: 400;
+            color: #a5a5a5;
+        }
+
+        .box-box i {
+            color: white;
+            background: radial-gradient(circle, #216CA8 5%, #1C2A6A 100%);
+            padding: 14px;
+            border-radius: 10px;
+        }
+
+        .box-content p {
+            font-size: 12px;
+            font-weight: 400;
+            color: #a5a5a5;
+        }
+        .box-content h2 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .shopnowbtn {
+            background-color: #0071D9;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .offer-main {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            gap: 20px;
+            padding: 10px;
+            border: 1px solid #2A2A361A;
+            border-radius: 10px;
+        }
+
+        .offer-left {
+            padding: 10px 0px;
+        }
+
+        .offer-left h6 {
+            color: #0071D9;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .offer-left h1 {
+            font-weight: 700;
+            font-size: 42px;
+        }
+
+        .offer-left button {
+            margin-top: 10px;
+        }
+
+        .offer-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .offer-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .offer-section {
+            position: relative;
+            padding: 20px;
+        }
+        .offbadge {
+            position: absolute;
+            top: -10px;
+            right: 6px;
+        }
+
+        /* ==========================
+           EDITOR'S PICK SECTION
+        ========================== */
+
+        .editor-section {
+            padding: 20px;
+        }
+
+        .editor-section-header {
+            margin-bottom: 16px;
+        }
+
+        .drop-title {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #777;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .editor-title {
+            font-size: 38px;
+            line-height: .9;
+            font-weight: 700;
+            color: #2A2A36;
+        }
+
+        .editor-desc {
+            margin-top: 10px;
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Slider wrapper */
+        .product-slider-wrap {
+            position: relative;
+        }
+
+        .product-slider {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+
+        .product-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Prev / Next buttons */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.55);
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn.prev { left: -14px; }
+        .slider-btn.next { right: -14px; }
+
+        /* Product card */
+        .product-card {
+            position: relative;
+            border: 1px solid #E5E5E5;
+            border-radius: 8px;
+            padding: 12px;
+            background: #fff;
+            min-width: 240px;
+            flex-shrink: 0;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 0px;
+            background: #224E8D;
+            color: #fff;
+            padding: 5px 8px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .wishlist {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 8px;
+            background: #F2F2F2;
+            color: #777;
+            cursor: pointer;
+        }
+
+        .product-image {
+            text-align: center;
+            margin-top: 36px;
+        }
+
+        .product-image img {
+            width: 100%;
+            max-width: 180px;
+            object-fit: contain;
+        }
+
+        .color-thumbnails {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 10px 0 12px;
+        }
+
+        .color-thumb {
+            width: 48px;
+            height: 48px;
+            padding: 4px;
+            border: 2px solid #E5E5E5;
+            border-radius: 8px;
+            background: #F8F8F8;
+            cursor: pointer;
+            overflow: hidden;
+            font: inherit;
+        }
+
+        .color-thumb.active {
+            border-color: #2F6EEA;
+        }
+
+        .color-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand {
+            font-size: 10px;
+            font-weight: 700;
+            color: #2F6EEA;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .product-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .product-info-left {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #22263D;
+            line-height: 1.1;
+        }
+
+        .sub-title {
+            font-size: 12px;
+            color: #777;
+            margin-top: 2px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+            color: #444;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .rating .star-icon {
+            width: 18px;
+            height: 18px;
+            background: #2F6EEA;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 800;
+            color: #22263D;
+        }
+
+        .mrp {
+            font-size: 12px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 6px;
+            font-weight: 400;
+        }
+
+        .discount {
+            background: #fff;
+            border: 1px solid #22A35A;
+            color: #22A35A;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .slider-btn {
+                display: none;
+            }
+        }
+
+        /* ==========================
+           SOCIAL MEDIA SECTION
+        ========================== */
+
+        .social-section {
+            padding: 20px;
+        }
+
+        .social-section-header {
+            margin-bottom: 16px;
+        }
+
+        .social-title {
+            font-size: 38px;
+            line-height: .9;
+            font-weight: 700;
+            color: #2A2A36;
+        }
+
+        .social-desc {
+            margin-top: 10px;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .social-slider {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding-bottom: 4px;
+        }
+
+        .social-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .social-card {
+            position: relative;
+            min-width: 210px;
+            height: 400px;
+            border-radius: 22px;
+            overflow: hidden;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .social-card .thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .social-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #fff;
+            z-index: 2;
+            cursor: pointer;
+            padding-left: 3px;
+        }
+
+        .social-card-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 14px 16px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.88));
+            color: #fff;
+        }
+
+        .social-card-footer .brand {
+            font-size: 10px;
+            font-weight: 700;
+            color: #2F6EEA;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .social-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 2px;
+        }
+
+        .social-info-row h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .social-card-footer .sub-title {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.75);
+            margin-top: 2px;
+        }
+
+        .social-card-footer .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .social-card-footer .price {
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .social-card-footer .mrp {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: line-through;
+            margin-left: 6px;
+            font-weight: 400;
+        }
+
+        .social-card-footer .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #fff;
+            margin-top: 0;
+            font-size: 12px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .social-card-footer .discount {
+            background: #D4F5E2;
+            border: none;
+            color: #1A7A45;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        /* ==========================
+           WHY ASIAN / CONFIDENCE
+        ========================== */
+
+        .confidence-section {
+            padding: 20px;
+        }
+
+        .confidence-header {
+            margin-bottom: 16px;
+        }
+
+        .confidence-title {
+            font-size: 38px;
+            line-height: .9;
+            font-weight: 700;
+            color: #1A2B4B;
+        }
+
+        .confidence-desc {
+            margin-top: 10px;
+            color: #0071D9;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .confidence-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .confidence-card {
+            border: 1px solid #EEEEEE;
+            border-radius: 14px;
+            padding: 14px 12px;
+            background: #fff;
+        }
+
+        .confidence-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: radial-gradient(circle, #216CA8 5%, #1C2A6A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .confidence-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1A2B4B;
+            margin-bottom: 4px;
+        }
+
+        .confidence-card p {
+            font-size: 11px;
+            color: #757575;
+            line-height: 1.4;
+        }
+
+        .confidence-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #0F1F3D 0%, #1C3A6E 100%);
+            border-radius: 14px;
+            padding: 20px 16px;
+            overflow: hidden;
+            min-height: 120px;
+        }
+
+        .confidence-banner-text h2 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .confidence-banner-text p {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .confidence-banner-img {
+            width: 130px;
+            height: auto;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #000;
+            color: #fff;
+            padding: 20px 15px;
+        }
+
+        .footer-container {
+            display: block;
+        }
+
+        .footer-logo {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #222;
+        }
+
+        .footer-logo img {
+            width: 160px;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo p {
+            font-size: 13px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .footer-box {
+            padding: 18px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .footer-box h3 {
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .item {
+            display: flex;
+            gap: 10px;
+            font-size: 13px;
+            margin-bottom: 12px;
+            color: #ddd;
+        }
+
+        .social {
+            display: flex;
+            gap: 18px;
+        }
+
+        .social a {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .footer-box ul {
+            list-style: none;
+        }
+
+        .footer-box ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-box ul li a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-box p {
+            font-size: 13px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="./assests/asian_logo1.png" alt="Asian Logo">
+        </div>
+        <div class="search">
+            <img src="./assests/fi-rr-search.png" alt="">
+            <img src="./assests/Vector.png" alt="">
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-text">
+            <span>INTRODUCING</span>
+            <h1>The Global Series</h1>
+            <p>The most premium footwear range</p>
+            <button class="explore-button">EXPLORE RANGE <img src="./assests/arrow_forward_ios.png" alt=""></button>
+        </div>
+    </div>
+
+    <div class="under-hero">
+        <div>
+            <p class="built-different">BUILT DIFFERENT</p>
+            <h1>MEETS</h1>
+            <h1>FUNCTION</h1>
+            <p class="under-description">
+                This sneaker is for people already in motion. Already doing the work. Already on the road in the city,
+                inside the day. They don't announce confidence. They operate with it.
+            </p>
+        </div>
+        <div class="box-container">
+            <div class="box-box">
+                <img src="./assests/bolt (1).png" alt="">
+                <div class="box-content">
+                    <h2>LIGHTWEIGHT SOLE</h2>
+                    <p>40% lighter than conventional foam compounds</p>
+                </div>
+            </div>
+            <div class="box-box">
+                <img src="./assests/bolt (2).png" alt="">
+                <div class="box-content">
+                    <h2>MEMORY FOAM</h2>
+                    <p>Memory foam moulds to your foot over time</p>
+                </div>
+            </div>
+            <div class="box-box">
+                <img src="./assests/bolt (3).png" alt="">
+                <div class="box-content">
+                    <h2>BREATHABLE MESH</h2>
+                    <p>Micro-perforated upper for max airflow</p>
+                </div>
+            </div>
+            <div class="box-box">
+                <img src="./assests/bolt (4).png" alt="">
+                <div class="box-content">
+                    <h2>ANTI-SLIP GRIP</h2>
+                    <p>Hexagonal rubber outsole for any surface</p>
+                </div>
+            </div>
+            <div class="box-box">
+                <img src="./assests/bolt (5).png" alt="">
+                <div class="box-content">
+                    <h2>SHOCK ABSORPTION</h2>
+                    <p>Triple-density midsole cushions every step.</p>
+                </div>
+            </div>
+            <div class="box-box">
+                <img src="./assests/bolt (6).png" alt="">
+                <div class="box-content">
+                    <h2>FLEXIBLE FIT</h2>
+                    <p>360° stretch zones adapt as you move.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer-section">
+        <div class="offer-main">
+            <div class="offer-left">
+                <h6>FEATURED PRODUCT</h6>
+                <h1>ZORO 01</h1>
+                <p>Premium Adventure Shoes</p>
+                <button class="shopnowbtn">SHOP NOW <i class="fa-solid fa-angle-right"></i></button>
+            </div>
+            <div class="offer-right">
+                <img src="./assests/off_shoes.png" alt="">
+            </div>
+        </div>
+        <img src="./assests/Frame 4765.png" class="offbadge" alt="">
+    </div>
+
+    <!-- EDITOR'S PICK — horizontal scroll product slider -->
+    <section class="editor-section">
+
+        <div class="editor-section-header">
+            <span class="drop-title">FEATURED DROP</span>
+            <h1 class="editor-title">EDITOR'S<br>PICK</h1>
+            <p class="editor-desc">The shoe the internet can't stop talking about.</p>
+        </div>
+
+        <div class="product-slider-wrap">
+            <button class="slider-btn prev">&#10094;</button>
+
+            <!-- Dynamic products render here via JS -->
+            <div class="product-slider" id="productSlider"></div>
+
+            <button class="slider-btn next">&#10095;</button>
+        </div>
+
+    </section>
+
+
+    <div class="socialmedia">
+        <section class="social-section">
+            <div class="social-section-header">
+                <span class="drop-title">SOCIAL MEDIA</span>
+                <h1 class="social-title">FIND YOUR<br>STYLE</h1>
+                <p class="social-desc">Pick your style, Watch the videos...</p>
+            </div>
+
+            <div class="product-slider-wrap">
+                <button class="slider-btn prev">&#10094;</button>
+                <div class="social-slider" id="socialSlider"></div>
+                <button class="slider-btn next">&#10095;</button>
+            </div>
+        </section>
+    </div>
+
+    <section class="confidence-section">
+        <div class="confidence-header">
+            <span class="drop-title">WHY ASIAN</span>
+            <h1 class="confidence-title">BUY WITH<br>CONFIDENCE</h1>
+            <p class="confidence-desc">We stand behind every pair we make.</p>
+        </div>
+
+        <div class="confidence-grid">
+            <div class="confidence-card">
+                <div class="confidence-icon">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <h3>FREE SHIPPING</h3>
+                <p>On all orders above ₹999 across India</p>
+            </div>
+            <div class="confidence-card">
+                <div class="confidence-icon">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </div>
+                <h3>EASY RETURNS</h3>
+                <p>30-day hassle-free return policy</p>
+            </div>
+            <div class="confidence-card">
+                <div class="confidence-icon">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h3>1 YEAR WARRANTY</h3>
+                <p>Manufacturing defects covered, always</p>
+            </div>
+            <div class="confidence-card">
+                <div class="confidence-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3>SECURE PAYMENT</h3>
+                <p>256-bit encrypted checkout</p>
+            </div>
+        </div>
+
+        <div class="confidence-banner">
+            <div class="confidence-banner-text">
+                <h2>10 CR+</h2>
+                <p>HAPPY CUSTOMERS & COUNTING</p>
+            </div>
+            <img src="./assests/customers-illustration.png" alt="Happy customers" class="confidence-banner-img">
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-logo">
+                <img src="https://cdn.asianlive.in/digital-website/asian-wave-white_12156424250444176950.png?tr=w-200,h-100" alt="logo">
+                <p>Asian is one of the fastest growing and the most loved footwear brands in India.</p>
+            </div>
+
+            <div class="footer-box">
+                <h3><i class="fa-regular fa-address-card"></i> GET IN TOUCH</h3>
+                <div class="item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@asianfootwears.com</span>
+                </div>
+                <div class="item">
+                    <i class="fa-solid fa-truck"></i>
+                    <span>+91 999-602-7231</span>
+                </div>
+                <div class="item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 756-100-0092</span>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h3><i class="fa-solid fa-share-nodes"></i> SOCIAL</h3>
+                <div class="social">
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-box">
+                <h3><i class="fa-solid fa-link"></i> QUICK LINKS</h3>
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">STORE LOCATOR</a></li>
+                    <li><a href="#">MY ACCOUNT</a></li>
+                    <li><a href="#">TRACK ORDER</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-box">
+                <h3><i class="fa-solid fa-location-dot"></i> ADDRESS</h3>
+                <p>J-20, Udhyog Nagar, Peeragarhi, Delhi, New Delhi 110041</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+
+        /* ── Dynamic product data ─────────────────────────────
+           Replace / fetch this array from your API or CMS.
+           Each object maps to one card in the slider.
+        ──────────────────────────────────────────────────── */
+        const products = [
+            {
+                name: 'POWER PLAY 01',
+                subtitle: 'Premium Running Shoes.',
+                image: './assests/shoe1.png',
+                colors: [
+                    { image: './assests/shoe1.png', alt: 'Green' },
+                    { image: './assests/off_shoes.png', alt: 'Navy' },
+                    { image: './assests/Component 11.png', alt: 'Tan' },
+                    { image: './assests/shoe1.png', alt: 'Black' }
+                ],
+                price: '₹1199',
+                oldPrice: '₹1599',
+                discount: '25% OFF',
+                rating: '4.2',
+                reviews: 32,
+                badge: 'Limited Stock',
+                wishlist: true
+            },
+            {
+                name: 'POWER PLAY 02',
+                subtitle: 'Premium Running Shoes.',
+                image: './assests/shoe1.png',
+                colors: [
+                    { image: './assests/shoe1.png', alt: 'Green' },
+                    { image: './assests/off_shoes.png', alt: 'Navy' },
+                    { image: './assests/Component 11.png', alt: 'Tan' },
+                    { image: './assests/shoe1.png', alt: 'Black' }
+                ],
+                price: '₹1299',
+                oldPrice: '₹1799',
+                discount: '30% OFF',
+                rating: '4.5',
+                reviews: 40,
+                badge: 'Limited Stock',
+                wishlist: true
+            },
+            {
+                name: 'ZORO 01',
+                subtitle: 'Adventure Shoes.',
+                image: './assests/off_shoes.png',
+                colors: [
+                    { image: './assests/off_shoes.png', alt: 'Brown' },
+                    { image: './assests/shoe1.png', alt: 'Black' },
+                    { image: './assests/Component 11.png', alt: 'Grey' }
+                ],
+                price: '₹1399',
+                oldPrice: null,
+                discount: null,
+                rating: '4.3',
+                reviews: 18,
+                badge: null,
+                wishlist: false
+            },
+            {
+                name: 'ZORO 02',
+                subtitle: 'Adventure Shoes.',
+                image: './assests/off_shoes.png',
+                colors: [
+                    { image: './assests/off_shoes.png', alt: 'Brown' },
+                    { image: './assests/shoe1.png', alt: 'Black' }
+                ],
+                price: '₹1499',
+                oldPrice: null,
+                discount: null,
+                rating: '4.1',
+                reviews: 22,
+                badge: null,
+                wishlist: false
+            },
+            {
+                name: 'GLOBAL PRO',
+                subtitle: 'Lifestyle Sneakers.',
+                image: './assests/shoe1.png',
+                colors: [
+                    { image: './assests/shoe1.png', alt: 'White' },
+                    { image: './assests/Component 11.png', alt: 'Grey' },
+                    { image: './assests/off_shoes.png', alt: 'Navy' }
+                ],
+                price: '₹1599',
+                oldPrice: '₹1999',
+                discount: '20% OFF',
+                rating: '4.6',
+                reviews: 55,
+                badge: 'New',
+                wishlist: true
+            },
+            {
+                name: 'TRAIL KING',
+                subtitle: 'Outdoor Shoes.',
+                image: './assests/Component 11.png',
+                colors: [
+                    { image: './assests/Component 11.png', alt: 'Olive' },
+                    { image: './assests/shoe1.png', alt: 'Black' },
+                    { image: './assests/off_shoes.png', alt: 'Brown' }
+                ],
+                price: '₹1699',
+                oldPrice: null,
+                discount: null,
+                rating: '4.4',
+                reviews: 30,
+                badge: null,
+                wishlist: false
+            }
+        ];
+
+        /* ── Render cards ─────────────────────────────────── */
+        function renderProducts(data) {
+            const slider = document.getElementById('productSlider');
+            slider.innerHTML = '';
+
+            data.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+
+                const colors = p.colors || [{ image: p.image, alt: p.name }];
+                const mainImage = colors[0].image;
+
+                card.innerHTML = `
+                    ${p.badge ? `<div class="badge">${p.badge}</div>` : ''}
+                    ${p.wishlist ? `<button class="wishlist" aria-label="Add to wishlist"><i class="fa-regular fa-heart"></i></button>` : ''}
+                    <div class="product-image">
+                        <img class="main-shoe-img" src="${mainImage}" alt="${p.name}">
+                    </div>
+                    <div class="color-thumbnails">
+                        ${colors.map((c, i) => `
+                            <button class="color-thumb ${i === 0 ? 'active' : ''}" data-image="${c.image}" aria-label="${c.alt}">
+                                <img src="${c.image}" alt="${c.alt}">
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="brand">ASIAN FOOTWEAR</div>
+                    <div class="product-info-row">
+                        <div class="product-info-left">
+                            <h3>${p.name}</h3>
+                            <div class="sub-title">${p.subtitle}</div>
+                        </div>
+                        ${p.rating ? `
+                            <div class="rating">
+                                <span class="star-icon"><i class="fa-solid fa-star"></i></span>
+                                ${p.rating} <span>| ${p.reviews}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <span class="price">${p.price}</span>
+                            ${p.oldPrice ? `<span class="mrp">MRP ${p.oldPrice}</span>` : ''}
+                        </div>
+                        ${p.discount ? `<span class="discount">${p.discount}</span>` : ''}
+                    </div>
+                `;
+
+                card.querySelectorAll('.color-thumb').forEach(thumb => {
+                    thumb.addEventListener('click', () => {
+                        card.querySelector('.main-shoe-img').src = thumb.dataset.image;
+                        card.querySelectorAll('.color-thumb').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                    });
+                });
+
+                slider.appendChild(card);
+            });
+        }
+
+        renderProducts(products);
+
+        /* ── Social media video data ──────────────────────── */
+        const socialVideos = [
+            {
+                thumb: './assests/herobg.jpg',
+                name: 'POWER PLAY 01',
+                subtitle: 'Premium Running Shoes.',
+                price: '₹1199',
+                oldPrice: '1599',
+                discount: '25% OFF',
+                rating: '4.2',
+                reviews: 32
+            },
+            {
+                thumb: './assests/herobg.jpg',
+                name: 'POWER PLAY 02',
+                subtitle: 'Premium Running Shoes.',
+                price: '₹1299',
+                oldPrice: '1799',
+                discount: '30% OFF',
+                rating: '4.5',
+                reviews: 40
+            },
+            {
+                thumb: './assests/herobg.jpg',
+                name: 'ZORO 01',
+                subtitle: 'Adventure Shoes.',
+                price: '₹1399',
+                oldPrice: null,
+                discount: null,
+                rating: '4.3',
+                reviews: 18
+            },
+            {
+                thumb: './assests/herobg.jpg',
+                name: 'GLOBAL PRO',
+                subtitle: 'Lifestyle Sneakers.',
+                price: '₹1599',
+                oldPrice: '1999',
+                discount: '20% OFF',
+                rating: '4.6',
+                reviews: 55
+            },
+            {
+                thumb: './assests/herobg.jpg',
+                name: 'TRAIL KING',
+                subtitle: 'Outdoor Shoes.',
+                price: '₹1699',
+                oldPrice: null,
+                discount: null,
+                rating: '4.4',
+                reviews: 30
+            }
+        ];
+
+        function renderSocialVideos(data) {
+            const slider = document.getElementById('socialSlider');
+            slider.innerHTML = '';
+
+            data.forEach(v => {
+                const card = document.createElement('div');
+                card.className = 'social-card';
+
+                card.innerHTML = `
+                    <img class="thumb" src="${v.thumb}" alt="${v.name}">
+                    <button class="social-play" aria-label="Play video">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                    <div class="social-card-footer">
+                        <div class="brand">ASIAN FOOTWEAR</div>
+                        <div class="social-info-row">
+                            <h3>${v.name}</h3>
+                            ${v.rating ? `
+                                <div class="rating">
+                                    <span class="star-icon"><i class="fa-solid fa-star"></i></span>
+                                    ${v.rating} <span>| ${v.reviews}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="sub-title">${v.subtitle}</div>
+                        <div class="price-row">
+                            <div>
+                                <span class="price">${v.price}</span>
+                                ${v.oldPrice ? `<span class="mrp">MRP ₹ ${v.oldPrice}</span>` : ''}
+                            </div>
+                            ${v.discount ? `<span class="discount">${v.discount}</span>` : ''}
+                        </div>
+                    </div>
+                `;
+
+                slider.appendChild(card);
+            });
+        }
+
+        renderSocialVideos(socialVideos);
+
+        /* ── Reusable slider init ─────────────────────────── */
+        function initSlider(wrap, scrollAmount) {
+            const slider = wrap.querySelector('[class$="-slider"]');
+            const prevBtn = wrap.querySelector('.slider-btn.prev');
+            const nextBtn = wrap.querySelector('.slider-btn.next');
+
+            prevBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+
+            let touchStartX = 0;
+
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            }, { passive: true });
+
+            slider.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 40) {
+                    slider.scrollBy({ left: diff > 0 ? scrollAmount : -scrollAmount, behavior: 'smooth' });
+                }
+            });
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.style.cursor = 'grabbing';
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.style.cursor = 'grab';
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                slider.scrollLeft = scrollLeft - (x - startX);
+            });
+
+            slider.style.cursor = 'grab';
+        }
+
+        initSlider(document.querySelector('.editor-section .product-slider-wrap'), 260);
+        initSlider(document.querySelector('.social-section .product-slider-wrap'), 226);
+
+    </script>
+
+</body>
+</html>
